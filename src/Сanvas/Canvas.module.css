@@ -1,0 +1,63 @@
+.canvas {
+    box-sizing: border-box;
+    position: absolute;
+    width: 243px;
+    height: 448px;
+    left: 372px;
+    top: 106px;
+
+    border: 2px dashed #C4C4C4;
+    border-radius: 6px;
+
+
+}
+
+.canvas__addingElem {
+    position: absolute;
+    width: 127px;
+    height: 84px;
+    left: calc(50% - 127px/2);
+    top: calc(50% - 84px/2);
+}
+
+.canvas__addingElem__pic {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 53px;
+    top: 1px;
+}
+
+.canvas__addingElem__text__bold {
+    position: absolute;
+    width: 127px;
+    height: 17px;
+    left: 0;
+    top: 33px;
+    font-weight: 500;
+    font-size: 14px;
+
+    text-align: center;
+
+    /* Iris/100 */
+
+    color: #5D5FEF;
+}
+
+.canvas__addingElem__text__normal {
+
+    position: absolute;
+    width: 106px;
+    height: 30px;
+    left: 10px;
+    top: 54px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+
+    color: #6B7280;
+
+
+}

@@ -1,0 +1,29 @@
+.equals {
+  height: 72px;
+}
+
+.equals__operator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  width: 232px;
+  height: 64px;
+  left: 80px;
+  top: 486px;
+
+  /* Iris/100 */
+
+  background: #5D5FEF;
+  border-radius: 6px;
+  border: 0;
+
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+
+  color: #FFFFFF;
+}

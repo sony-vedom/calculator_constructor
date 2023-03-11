@@ -1,0 +1,11 @@
+.App {
+  position: relative;
+
+  width: 695px;
+  height: 640px;
+  background: #FFFFFF;
+  padding: 38px 80px 86px 76px;
+
+  display: flex;
+  gap: 56px;
+}
