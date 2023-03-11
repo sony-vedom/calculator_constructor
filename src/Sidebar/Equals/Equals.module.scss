@@ -1,4 +1,4 @@
-.equals, .inactive {
+.equals {
   width: 240px;
   padding: 4px;
   box-sizing: border-box;
@@ -6,12 +6,8 @@
   height: 72px;
 }
 
-.inactive {
-  opacity: 50%;
-  box-shadow: 0 0 0 0;
-}
-
 .equals__operator {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,4 +31,7 @@
   line-height: 15px;
 
   color: #FFFFFF;
+
+  cursor: inherit;
+
 }

@@ -1,5 +1,6 @@
 .canvas {
     box-sizing: border-box;
+
     position: absolute;
     width: 243px;
     height: 448px;
@@ -8,8 +9,12 @@
 
     border: 2px dashed #C4C4C4;
     border-radius: 6px;
+}
 
-
+.canvas__autoDropEffect {
+    display: grid;
+    gap: 12px;
+    border: none;
 }
 
 .canvas__addingElem {

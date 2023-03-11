@@ -4,9 +4,9 @@ import {ReactComponent as RuntimeIcon} from "../assets/image/eye.svg"
 import {ReactComponent as ConstructorIcon} from "../assets/image/selector.svg"
 import classNames from "classnames";
 import {connect} from "react-redux";
-import {enableConstructorMode} from "../redux/constructorState";
+import {enableConstructorMode, reloadConstructorMode} from "../redux/constructorState";
 
-const Toggle = ({isEditMode, enableConstructorMode}) => {
+const Toggle = ({isEditMode, enableConstructorMode, reloadConstructorMode}) => {
     const [isConstructorMode, setConstructorMode] = useState(isEditMode);
 
     useEffect(() => {
@@ -29,7 +29,11 @@ const Toggle = ({isEditMode, enableConstructorMode}) => {
                     }/>
                 <p>Runtime</p>
             </button>
-            <button type={"button"} onClick={() => setConstructorMode(true)}
+            <button type={"button"}
+                    onClick={() => {
+                        setConstructorMode(true)
+                        reloadConstructorMode()
+                    }}
                     className={isConstructorMode
                         ? classNames(styles.toggle__constructor, styles.active)
                         : styles.toggle__constructor}>
@@ -45,4 +49,4 @@ const Toggle = ({isEditMode, enableConstructorMode}) => {
 
 export default connect(
     (state) => ({isEditMode: state.constructorState.isEditMode}),
-    {enableConstructorMode})(Toggle);
+    {enableConstructorMode, reloadConstructorMode})(Toggle);

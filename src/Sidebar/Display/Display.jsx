@@ -1,10 +1,12 @@
 import styles from "./Display.module.css"
-import React, {useRef, useState} from "react";
+import React from "react";
 
-const Display = ({isEditMode, handleDragStart, ...props}) => {
+const Display = ({isEditMode, onDragStart, isActive, styleInactive}) => {
+    const isActiveDisplay = isActive("display")
     return (
-        <div id={"display"} className={styles.display} draggable={isEditMode && props.sidebarComponents.includes("display")}
-             onDragStart={handleDragStart}>
+        <div id={"display"} style={!isActiveDisplay ? styleInactive : {}} className={styles.display}
+             draggable={isEditMode && isActiveDisplay}
+             onDragStart={onDragStart}>
             <div className={styles.display__value}>
                 <p className={styles.display__value__text}>0</p>
             </div>

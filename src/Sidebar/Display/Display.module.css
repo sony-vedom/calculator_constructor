@@ -1,5 +1,8 @@
 .display {
     height: 60px;
+    width: 240px;
+    padding: 4px;
+    box-sizing: border-box;
 }
 
 .display__value {
@@ -12,6 +15,9 @@
 
     background: #F3F4F6;
     border-radius: 6px;
+
+    cursor: inherit;
+
 }
 
 .display__value__text {

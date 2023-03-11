@@ -1,7 +1,9 @@
 import styles from "./Numbers.module.scss"
 
-const Numbers = ({numbers, isEditMode, handleDragStart, ...props}) => {
-    const myReverseNumber = numbers.slice().reverse().reduce((acc, el, i) => {
+const Numbers = ({numbers, isEditMode, onDragStart, isActive,
+                     styleInactive, onDragOver,onDragEnter, onDragEnd}) => {
+    const isActiveNumbers = isActive("numbers")
+    const myReverseNumber = [...numbers].reverse().reduce((acc, el, i) => {
         if ((i + 1) % 3 === 0) {
             const x = el
             acc[i] = acc[i - 2]
@@ -12,11 +14,13 @@ const Numbers = ({numbers, isEditMode, handleDragStart, ...props}) => {
     }, [])
 
     return (
-        <div className={styles.numbers} id={"numbers"}
-             draggable={isEditMode && props.sidebarComponents.includes("numbers")}
-             onDragEnter={props.handleDragEnter ?? null} onDragStart={handleDragStart}
-             onDragOver={(e) => e.preventDefault()}
-             onDragEnd={props.onDragEnd ?? null}>
+        <div style={!isActiveNumbers ? styleInactive : {}}
+            className={styles.numbers} id={"numbers"}
+             draggable={isEditMode && isActiveNumbers}
+             onDragEnter={onDragEnter ?? null}
+             onDragStart={onDragStart}
+             onDragOver={onDragOver ?? null}
+             onDragEnd={onDragEnd ?? null}>
             {
                 myReverseNumber.map((el) => <button type={"button"} key={`number+${el}`}>{el}</button>)
             }
