@@ -1,5 +1,9 @@
 .numbers {
   height: 224px;
+  width: 240px;
+  padding: 4px;
+  margin-top: 12px;
+  box-sizing: border-box;
   display: grid;
   gap: 8px;
   grid-template-columns: 72px 72px 72px;
@@ -19,6 +23,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 15px;
+  cursor: inherit;
 }
 
 .numbers > *:nth-child(10) {

@@ -1,4 +1,8 @@
 .equals {
+  width: 240px;
+  padding: 4px;
+  box-sizing: border-box;
+  margin-top: 12px;
   height: 72px;
 }
 
@@ -20,6 +24,7 @@
   font-size: 14px;
   line-height: 15px;
   color: #FFFFFF;
+  cursor: inherit;
 }
 
 /*# sourceMappingURL=Equals.module.css.map */

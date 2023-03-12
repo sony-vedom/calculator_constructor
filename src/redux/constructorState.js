@@ -1,6 +1,6 @@
 const ENABLE_CONSTRUCTOR_MODE = "ENABLE_CONSTRUCTOR_MODE"
-const ADD_SIDEBAR_COMPONENT = "ADD_SIDEBAR_COMPONENT"
 const ADD_CANVAS_COMPONENT = "ADD_CANVAS_COMPONENT"
+const DELETE_CANVAS_COMPONENT = "DELETE_CANVAS_COMPONENT"
 const RELOAD_CONSTRUCTOR_MODE = "RELOAD_CONSTRUCTOR_MODE"
 
 const initialState = {
@@ -29,6 +29,15 @@ const constructorState = (state = initialState, action) => {
                 }
             }
         }
+        case DELETE_CANVAS_COMPONENT: {
+            return {
+                ...state,
+                componentsLists: {
+                    sidebar: [...state.componentsLists.sidebar, action.component],
+                    canvas: state.componentsLists.canvas.filter(el => el !== action.component)
+                }
+            }
+        }
         case RELOAD_CONSTRUCTOR_MODE: {
             return {
                 ...state,
@@ -44,6 +53,7 @@ const constructorState = (state = initialState, action) => {
     }
 }
 
+
 export const enableConstructorMode = (isConstructorMode) => ({
     type: ENABLE_CONSTRUCTOR_MODE,
     isConstructorMode
@@ -58,5 +68,11 @@ export const addCanvasComponents = (component) => ({
     component
 })
 
+export const deleteCanvasComponents = (component) => {
+    return {
+        type: DELETE_CANVAS_COMPONENT,
+        component
+    }
+}
 
 export default constructorState;

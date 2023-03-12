@@ -1,6 +1,6 @@
 import styles from "./Numbers.module.scss"
 
-const Numbers = ({numbers, isEditMode, onDragStart, isActive,
+const Numbers = ({numbers, isEditMode, onDragStart, isActive, onDoubleClick,onDrop,
                      styleInactive, onDragOver,onDragEnter, onDragEnd}) => {
     const isActiveNumbers = isActive("numbers")
     const myReverseNumber = [...numbers].reverse().reduce((acc, el, i) => {
@@ -20,7 +20,9 @@ const Numbers = ({numbers, isEditMode, onDragStart, isActive,
              onDragEnter={onDragEnter ?? null}
              onDragStart={onDragStart}
              onDragOver={onDragOver ?? null}
-             onDragEnd={onDragEnd ?? null}>
+             onDragEnd={onDragEnd ?? null}
+             onDoubleClick={isEditMode ? onDoubleClick : null} onDrop={onDrop} >
+
             {
                 myReverseNumber.map((el) => <button type={"button"} key={`number+${el}`}>{el}</button>)
             }

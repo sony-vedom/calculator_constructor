@@ -1,9 +1,11 @@
 .operators {
     width: 240px;
+    height: 56px;
     padding: 4px;
     box-sizing: border-box;
 
-    height: 56px;
+    margin-top: 12px;
+
     display: flex;
     justify-content: center;
     gap: 8px;

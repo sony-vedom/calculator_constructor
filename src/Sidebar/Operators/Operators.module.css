@@ -1,5 +1,9 @@
 .operators {
+  width: 240px;
   height: 56px;
+  padding: 4px;
+  box-sizing: border-box;
+  margin-top: 12px;
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -20,6 +24,7 @@
   line-height: 15px;
   text-align: center;
   color: #000000;
+  cursor: inherit;
 }
 
 /*# sourceMappingURL=Operators.module.css.map */
