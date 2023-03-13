@@ -1,33 +1,45 @@
 .numbers {
-  height: 224px;
-  width: 240px;
-  padding: 4px;
-  margin-top: 12px;
-  box-sizing: border-box;
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 72px 72px 72px;
+    height: 224px;
+    width: 240px;
+
+    padding: 4px;
+
+    margin-top: 12px;
+
+    box-sizing: border-box;
+
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 72px 72px 72px;
+    border-image: none;
 }
 
+
 .numbers > * {
-  height: 48px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #E2E3E5;
-  border-radius: 6px;
-  background: #FFFFFF;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 15px;
-  cursor: inherit;
+    height: 48px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid #E2E3E5;
+    border-radius: 6px;
+
+    background: #FFFFFF;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+
+    cursor: inherit;
+
 }
 
 .numbers > *:nth-child(10) {
-  grid-column: span 2;
+    grid-column: span 2;
 }
 
-/*# sourceMappingURL=Numbers.module.css.map */

@@ -22,9 +22,11 @@
 .display__value__text {
     margin: 0;
     padding: 0;
+    width: fit-content;
+    height: clamp(1.438rem, 0.001rem + 99.96vw, 2.75rem);
     font-weight: 800;
-    font-size: 19px;
-    line-height: 44px;
+    font-size: clamp(1.188rem, 1.035rem + 9.39vw, 2.25rem);
+    line-height: 1.2;
     /* identical to box height */
 
     display: flex;
@@ -32,6 +34,9 @@
 
 
     /* gray/900 */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 
     color: #111827;
 }

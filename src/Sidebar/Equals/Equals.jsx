@@ -1,9 +1,12 @@
 import styles from "./Equals.module.scss"
+import {ReactComponent as VectorDnD} from "../../assets/image/vector.svg";
 
-const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop,
+const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop, whereAddDnDIndex,
                     onDragOver, onDragEnter, onDragEnd, onDoubleClick, makeOperation}) => {
     const isActiveEquals = isActive("equals")
     return (
+        <>
+            { whereAddDnDIndex === "above" ? <VectorDnD/> : null}
         <div style={!isActiveEquals ? styleInactive : {}}
              className={styles.equals} id={"equals"}
              draggable={isEditMode && isActiveEquals}
@@ -17,6 +20,8 @@ const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop,
         >
             <button className={styles.equals__operator}>=</button>
         </div>
+            { whereAddDnDIndex === "under" ? <VectorDnD/> : null}
+        </>
     )
 }
 

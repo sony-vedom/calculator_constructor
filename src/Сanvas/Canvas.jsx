@@ -13,11 +13,14 @@ import {ReactComponent as VectorDnD} from "../assets/image/vector.svg";
 import {makeOperation, setTypeOperation, addDot, setNumber} from "../redux/calculatorData";
 
 
-
-const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents,
-                    isEditMode, makeOperation, setTypeOperation, setNumber, number, addDot, number2}) => {
+const Canvas = ({
+                    addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents,
+                    isEditMode, makeOperation, setTypeOperation, setNumber, number, addDot, number2
+                }) => {
     const [isDragOver, setDragover] = useState(false);
     const [componentsList, setList] = useState([canvasComponents.filter(el => !!el)])
+    const [whereAddDnD, setWhereAddDnD] = useState("")
+    const [indexDragOver, setIndexDragOver] = useState(null)
 
     useEffect(() => {
         setList(canvasComponents)
@@ -34,7 +37,7 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
         isActive: (componentName) => componentName !== "display",
         styleInactive: {},
         onDragOver: handlersDnD.handleDragOver(),
-        onDragEnd: handlersDnD.handleDragEndCanvasComponents(componentsList, dragItem, dragOverItem, setList),
+        onDragEnd: handlersDnD.handleDragEndCanvasComponents(componentsList, dragItem, dragOverItem, setList, setWhereAddDnD),
         onDoubleClick: (e) => {
             deleteCanvasComponents(e.currentTarget.id)
         },
@@ -44,22 +47,20 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
     }
 
     const onDrop = () => () => {
-       setList( componentsList.filter(el => el !== "vector"))
+        setList(componentsList.filter(el => el !== "vector"))
+        setWhereAddDnD("")
     }
 
-    const onDragEnter = (i) => () => {
+    const onDragEnter = (i) => (e) => {
         dragOverItem.current = i;
-        const list = componentsList.filter(el => el !== "vector" && !!el);
-        setList(list)
-        if (dragItem.current !== dragOverItem.current && !(componentsList.includes("vector"))) {
+        setIndexDragOver(dragOverItem.current)
+        if (dragItem.current !== dragOverItem.current) {
             if (dragItem.current > dragOverItem.current) {
-                list.splice(dragOverItem.current, 0, "vector")
-                setList(list)
+                setWhereAddDnD("above")
             }
 
             if (dragItem.current < dragOverItem.current) {
-                list.splice(dragOverItem.current + 1, 0, "vector")
-                setList(list)
+                setWhereAddDnD("under")
 
             }
         }
@@ -69,6 +70,10 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
     const Components = componentsList
         .sort(a => a === "display" ? -1 : 1)
         .reduce((acc, el, i) => {
+            let whereAddDnDIndex = ""
+            if (indexDragOver === i) {
+                whereAddDnDIndex = whereAddDnD
+            }
 
             const endStartKey = {
                 onDragStart: handlersDnD.handleDragStartCanvasComponents(i, dragItem),
@@ -83,20 +88,20 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
                             ...props,
                             key: endStartKey.key,
                             styleInactive: {cursor: "not-allowed"},
-                            number, number2,
+                            number, number2,  whereAddDnDIndex,
                         }, "div")]
                 }
                 case "operators": {
                     return [...acc, React.cloneElement(<Operators/>,
-                        {...props, ...endStartKey}, null)]
+                        {...props, ...endStartKey, whereAddDnDIndex}, null)]
                 }
                 case "numbers": {
                     return [...acc, React.cloneElement(<Numbers/>,
-                        {...props, ...endStartKey, addDot, setNumber}, null)]
+                        {...props, ...endStartKey, addDot, setNumber, whereAddDnDIndex}, null)]
                 }
                 case "equals": {
                     return [...acc, React.cloneElement(<Equals/>,
-                        {...props, ...endStartKey}, null)]
+                        {...props, ...endStartKey, whereAddDnDIndex}, null)]
                 }
                 case "vector": {
                     return [...acc, <VectorDnD/>]
@@ -138,4 +143,11 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {addCanvasComponents, deleteCanvasComponents, makeOperation, setTypeOperation, setNumber, addDot})(Canvas);
+export default connect(mapStateToProps, {
+    addCanvasComponents,
+    deleteCanvasComponents,
+    makeOperation,
+    setTypeOperation,
+    setNumber,
+    addDot
+})(Canvas);

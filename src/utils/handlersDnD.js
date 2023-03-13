@@ -1,4 +1,7 @@
 
+import {ReactComponent as VectorDnD} from "../assets/image/vector.svg";
+
+
 const handlersDnD = {
     handleDragStartSidebarComponents: e => e.dataTransfer.setData("text", `${e.target.id}`),
     handleDragOver: (setDragover = {}) => e => {
@@ -19,7 +22,8 @@ const handlersDnD = {
     handleDragEnterCanvasComponents: (i, dragOverItem) => () => {
         dragOverItem.current = i;
     },
-    handleDragEndCanvasComponents: (componentsList, dragItem, dragOverItem, setList) => (e) => {
+    handleDragEndCanvasComponents: (componentsList, dragItem, dragOverItem, setList, setWhereAddDnD) => (e) => {
+        setWhereAddDnD("")
         const copyListItems = [...componentsList]
         const dragItemContent = copyListItems[dragItem.current];
         copyListItems.splice(dragItem.current, 1);

@@ -1,12 +1,14 @@
 import styles from "./Operators.module.scss"
+import {ReactComponent as VectorDnD} from "../../assets/image/vector.svg";
 
 const Operators = ({
-                       operators, isEditMode, onDragStart, isActive, onDoubleClick,
+                       operators, isEditMode, onDragStart, isActive, onDoubleClick, whereAddDnDIndex,
                        onDragEnter, styleInactive, onDragEnd, onDragOver, onDrop, setTypeOperation
                    }) => {
-
     const isActiveOperators = isActive("operators")
     return (
+        <>
+            { whereAddDnDIndex === "above" ? <VectorDnD/> : null}
         <div style={!isActiveOperators ? styleInactive : {}} className={styles.operators}
              id={"operators"} draggable={isEditMode && isActiveOperators}
              onDragEnter={onDragEnter ?? null} onDragOver={onDragOver ?? null}
@@ -35,7 +37,10 @@ const Operators = ({
 
                 })
             }
+
         </div>
+            { whereAddDnDIndex === "under" ? <VectorDnD/> : null}
+        </>
     )
 }
 
