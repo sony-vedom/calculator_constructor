@@ -43,12 +43,11 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
         makeOperation,
     }
 
-    const onDrop = () => (e) => {
+    const onDrop = () => () => {
        setList( componentsList.filter(el => el !== "vector"))
     }
 
-    const onDragEnter = (i) => (e) => {
-
+    const onDragEnter = (i) => () => {
         dragOverItem.current = i;
         const list = componentsList.filter(el => el !== "vector" && !!el);
         setList(list)
@@ -67,19 +66,12 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
     }
 
 
-
-   const onDragStart = (i) => (e) => {
-        dragItem.current = i;
-    }
-    // console.log(componentsList)
-
-
     const Components = componentsList
         .sort(a => a === "display" ? -1 : 1)
         .reduce((acc, el, i) => {
 
             const endStartKey = {
-                onDragStart: onDragStart(i),
+                onDragStart: handlersDnD.handleDragStartCanvasComponents(i),
                 onDragEnter: onDragEnter(i),
                 onDrop: onDrop,
                 key: el,
