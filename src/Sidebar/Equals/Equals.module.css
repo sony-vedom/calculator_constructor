@@ -1,9 +1,13 @@
-.equals {
+.equals, .equals_calcMode {
   width: 240px;
   padding: 4px;
   box-sizing: border-box;
   margin-top: 8px;
   height: 72px;
+}
+
+.equals_calcMode {
+  cursor: pointer;
 }
 
 .equals__operator {

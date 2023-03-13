@@ -12,13 +12,15 @@ const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClic
 
     const fontSize = () => {
         const value = outputValue();
+        if(value.length>14) return "14px";
         if (value.length<8) return "36px";
         if(value.length>13) return "19px";
         return "24px";
     }
 
     return (
-        <div id={"display"} style={!isActiveDisplay ? styleInactive : {}} className={styles.display}
+        <div id={"display"} style={ isEditMode ?(!isActiveDisplay ? styleInactive : {}) : {cursor: "default"}}
+             className={styles.display}
              draggable={isEditMode && isActiveDisplay}
              onDragStart={onDragStart}
              onDragEnd={onDragEnd ?? null}

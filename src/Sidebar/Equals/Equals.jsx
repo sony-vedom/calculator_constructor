@@ -8,7 +8,7 @@ const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop, where
         <>
             { whereAddDnDIndex === "above" ? <VectorDnD/> : null}
         <div style={!isActiveEquals ? styleInactive : (whereAddDnDIndex ? {marginTop: 0} : null)}
-             className={styles.equals} id={"equals"}
+             className={isEditMode ? styles.equals : styles.equals_calcMode} id={"equals"}
              draggable={isEditMode && isActiveEquals}
              onDragStart={onDragStart}
              onDragEnter={isDragStartSideBarComponent ? null : (onDragEnter ?? null)}

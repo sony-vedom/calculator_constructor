@@ -1,4 +1,4 @@
-.display {
+.display, .display_calcMode {
     height: 60px;
     width: 240px;
     padding: 4px;
@@ -26,13 +26,11 @@
     height: 44px;
     font-weight: 800;
     line-height: 1.2;
-    /* identical to box height */
 
     display: flex;
     align-items: flex-end;
 
 
-    /* gray/900 */
     flex: none;
     order: 0;
     flex-grow: 0;

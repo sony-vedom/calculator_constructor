@@ -19,17 +19,23 @@ const Operators = ({
                 {
                     operators.map(el => {
                         let typeOperation = ""
-                        if (el === "+") {
-                            typeOperation = "PLUS"
-                        }
-                        if (el === "-") {
-                            typeOperation = "MINUS"
-                        }
-                        if (el === "/") {
-                            typeOperation = "DIVISION"
-                        }
-                        if (el === "х") {
-                            typeOperation = "MULTIPLICATION"
+                        switch (el) {
+                            case "+": {
+                                typeOperation = "PLUS"
+                                break
+                            }
+                            case "-": {
+                                typeOperation = "MINUS"
+                                break
+                            }
+                            case "/": {
+                                typeOperation = "DIVISION"
+                                break
+                            }
+                            case "х": {
+                                typeOperation = "MULTIPLICATION"
+                                break
+                            }
                         }
                         return <div className={styles.frame} key={`frameOperator +${el}`}>
                             <button type={"button"}

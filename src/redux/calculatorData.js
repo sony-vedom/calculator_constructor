@@ -1,5 +1,6 @@
 import numbers from "../Sidebar/Numbers/Numbers";
 import Numbers from "../Sidebar/Numbers/Numbers";
+/* global BigInt */
 
 const PLUS = "PLUS" // +
 const MINUS = "MINUS" // -
@@ -26,11 +27,17 @@ const calculatorData = (state = initialState, action) => {
         if (!isFinite(number)) number = "Не определено"
         const stringNumber = String(number)
         if (stringNumber.length > 14) {
-            const minusLength = stringNumber.includes("-") ? 2 : 1
-            number = number.toFixed(14 - minusLength - (stringNumber.slice(0, stringNumber.indexOf(".")).length))
+            try {
+                const minusLength = stringNumber.includes("-") ? 2 : 1
+                number = number.toFixed(14 - minusLength - (stringNumber.slice(0, stringNumber.indexOf(".")).length))
+            } catch {
+                number = String(BigInt(Number(stringNumber)))
+            }
         }
         return number
     }
+
+
     switch (action.type) {
         case PLUS: {
             let number = Number(state.number) + Number(state.number2)
@@ -116,12 +123,11 @@ const calculatorData = (state = initialState, action) => {
         }
 
         case ADD_DOT: {
-            let dot = "."
-            let dot2 = "."
-            String(state.number).includes(".") ? dot = state.number : dot = String(state.number) + "."
-            String(state.number2).includes(".") ? dot2 = state.number2 : dot2 = String(state.number2) + "."
 
-            return !state.typeOperation ?  {...state, number: dot,} :  {...state, number2: dot2,}
+            let dot = String(state.number).includes(".") ? state.number : String(state.number) + "."
+            let dot2 = String(state.number2).includes(".") ? state.number2 : String(state.number2) + "."
+
+            return !state.typeOperation ? {...state, number: dot} : {...state, number2: dot2}
 
         }
 
@@ -137,6 +143,7 @@ const calculatorData = (state = initialState, action) => {
                 ...state,
                 number: 0,
                 number2: "",
+                typeOperation: "",
             }
         }
         default: {

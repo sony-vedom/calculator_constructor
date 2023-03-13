@@ -20,11 +20,27 @@ const handlersDnD = {
         if (component) addCanvasComponents(component)
         setDragover(false)
     },
+    handleDropCanvasComponents: (setWhereAddDnD) => () => {
+        setWhereAddDnD("")
+    },
     handleDragStartCanvasComponents: (i, dragItem) => (e) => {
         dragItem.current = i;
     },
-    handleDragEnterCanvasComponents: (i, dragOverItem) => () => {
+    handleDragEnterCanvasComponents: (i, dragOverItem, dragItem, setWhereAddDnD, setIndexDragOver) => (e) => {
         dragOverItem.current = i;
+        e.preventDefault();
+        e.stopPropagation();
+        setIndexDragOver(dragOverItem.current)
+        if (dragItem.current !== dragOverItem.current) {
+            if (dragItem.current > dragOverItem.current) {
+                setWhereAddDnD("above")
+            }
+
+            if (dragItem.current < dragOverItem.current) {
+                setWhereAddDnD("under")
+
+            }
+        }
     },
     handleDragEndCanvasComponents: (componentsList, dragItem, dragOverItem, setList, setWhereAddDnD) => (e) => {
         setWhereAddDnD("")
@@ -36,9 +52,6 @@ const handlersDnD = {
     },
 
 }
-
-
-
 
 
 export default handlersDnD;
