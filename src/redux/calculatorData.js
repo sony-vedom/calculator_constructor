@@ -25,9 +25,9 @@ const calculatorData = (state = initialState, action) => {
     const roundingAndIsFinite = (number) => {
         if (!isFinite(number)) number = "Не определено"
         const stringNumber = String(number)
-        if (stringNumber.length > 17) {
+        if (stringNumber.length > 14) {
             const minusLength = stringNumber.includes("-") ? 2 : 1
-            number = number.toFixed(17 - minusLength - (stringNumber.slice(0, stringNumber.indexOf(".")).length))
+            number = number.toFixed(14 - minusLength - (stringNumber.slice(0, stringNumber.indexOf(".")).length))
         }
         return number
     }
@@ -91,7 +91,7 @@ const calculatorData = (state = initialState, action) => {
 
             if (state.typeOperation) {
 
-                if (String(state.number2 + action.number).length > 17) {
+                if (String(state.number2 + action.number).length > 14) {
                     return {
                         ...state,
                         number2: state.number2,
@@ -103,7 +103,7 @@ const calculatorData = (state = initialState, action) => {
                 }
             }
 
-            if (String(state.number + action.number).length > 17) {
+            if (String(state.number + action.number).length > 14) {
                 return {
                     ...state,
                     number: state.number,

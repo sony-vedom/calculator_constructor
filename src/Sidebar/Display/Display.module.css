@@ -23,9 +23,8 @@
     margin: 0;
     padding: 0;
     width: fit-content;
-    height: clamp(1.438rem, 0.001rem + 99.96vw, 2.75rem);
+    height: 44px;
     font-weight: 800;
-    font-size: clamp(1.188rem, 1.035rem + 9.39vw, 2.25rem);
     line-height: 1.2;
     /* identical to box height */
 
