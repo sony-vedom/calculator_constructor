@@ -11,7 +11,9 @@ const handlersDnD = {
     handleDragOver: (setDragover = {}) => e => {
         e.preventDefault();
         e.stopPropagation();
-        if (Array.from(setDragover).length) setDragover(true)
+        if (Array.from(setDragover).length) {
+            setDragover(true)
+        }
     },
     handleDrop: (addCanvasComponents, setDragover) => e => {
         e.preventDefault();
@@ -28,9 +30,9 @@ const handlersDnD = {
     },
     handleDragEnterCanvasComponents: (i, dragOverItem, dragItem, setWhereAddDnD, setIndexDragOver) => (e) => {
         dragOverItem.current = i;
+        setIndexDragOver(dragOverItem.current);
         e.preventDefault();
         e.stopPropagation();
-        setIndexDragOver(dragOverItem.current)
         if (dragItem.current !== dragOverItem.current) {
             if (dragItem.current > dragOverItem.current) {
                 setWhereAddDnD("above")

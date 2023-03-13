@@ -1,5 +1,3 @@
-import numbers from "../Sidebar/Numbers/Numbers";
-import Numbers from "../Sidebar/Numbers/Numbers";
 /* global BigInt */
 
 const PLUS = "PLUS" // +
@@ -61,7 +59,6 @@ const calculatorData = (state = initialState, action) => {
         case DIVISION: {
             let number = Number(state.number) / Number(state.number2)
             number = roundingAndIsFinite(number)
-            debugger
             return {
                 ...state,
                 number: number,
@@ -187,6 +184,9 @@ export const makeOperation = () => (dispatch, getState) => {
         case MULTIPLICATION: {
             dispatch(multiplicationAction())
             break;
+        }
+        default: {
+            break
         }
     }
     dispatch(resetValue(true))

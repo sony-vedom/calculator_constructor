@@ -45,7 +45,7 @@ const ComponentsCanvas = ({
             }
             const propsForDndComponents = {
                 onDragStart: handlersDnD.handleDragStartCanvasComponents(i, dragItem),
-                onDragEnter: handlersDnD.handleDragEnterCanvasComponents(i, dragOverItem, setWhereAddDnD, setIndexDragOver),
+                onDragEnter: handlersDnD.handleDragEnterCanvasComponents(i, dragOverItem, dragItem, setWhereAddDnD,setIndexDragOver),
                 onDrop: handlersDnD.handleDropCanvasComponents(setWhereAddDnD),
                 key: el,
             }

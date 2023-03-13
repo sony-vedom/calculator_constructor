@@ -1,8 +1,8 @@
-import {legacy_createStore as createStore, combineReducers, compose, applyMiddleware} from "redux"
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux"
 import calculatorData from "./calculatorData";
 import constructorState from "./constructorState"
 import thunkMiddleware from "redux-thunk";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 
 const reducers = combineReducers({

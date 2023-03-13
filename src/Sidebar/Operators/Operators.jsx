@@ -36,6 +36,9 @@ const Operators = ({
                                 typeOperation = "MULTIPLICATION"
                                 break
                             }
+                            default: {
+                                break
+                            }
                         }
                         return <div className={styles.frame} key={`frameOperator +${el}`}>
                             <button type={"button"}
