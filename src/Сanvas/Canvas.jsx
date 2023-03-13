@@ -71,7 +71,7 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
         .reduce((acc, el, i) => {
 
             const endStartKey = {
-                onDragStart: handlersDnD.handleDragStartCanvasComponents(i),
+                onDragStart: handlersDnD.handleDragStartCanvasComponents(i, dragItem),
                 onDragEnter: onDragEnter(i),
                 onDrop: onDrop,
                 key: el,
