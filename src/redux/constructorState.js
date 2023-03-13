@@ -2,13 +2,16 @@ const ENABLE_CONSTRUCTOR_MODE = "ENABLE_CONSTRUCTOR_MODE"
 const ADD_CANVAS_COMPONENT = "ADD_CANVAS_COMPONENT"
 const DELETE_CANVAS_COMPONENT = "DELETE_CANVAS_COMPONENT"
 const RELOAD_CONSTRUCTOR_MODE = "RELOAD_CONSTRUCTOR_MODE"
+const IS_DRAGSTART_SIDEBAR_COMPONENTS = "IS_DRAGSTART_SIDEBAR_COMPONENTS"
 
 const initialState = {
     isEditMode: true,
     componentsLists: {
         sidebar: ["display", "operators", "numbers", "equals"],
         canvas: []
-    }
+    },
+    isDragStartSideBarComponent: false,
+    isDragStartSideBarComponentDisplay: false,
 }
 
 const constructorState = (state = initialState, action) => {
@@ -48,10 +51,25 @@ const constructorState = (state = initialState, action) => {
             }
         }
 
+        case IS_DRAGSTART_SIDEBAR_COMPONENTS: {
+            return {
+                ...state,
+                isDragStartSideBarComponent: action.booleanValue,
+                isDragStartSideBarComponentDisplay: action.booleanValueDisplay,
+
+            }
+        }
+
         default:
             return state;
     }
 }
+
+export const isDragStartSideBarComponents = (booleanValue, booleanValueDisplay) => ({
+    type: IS_DRAGSTART_SIDEBAR_COMPONENTS,
+    booleanValue,
+    booleanValueDisplay
+})
 
 
 export const enableConstructorMode = (isConstructorMode) => ({

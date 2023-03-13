@@ -1,7 +1,7 @@
 import styles from "./Display.module.css"
 import React from "react";
 
-const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClick, number, number2}) => {
+const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClick, number, number2, onDragEnd}) => {
     const isActiveDisplay = isActive("display")
     const outputNumber = () => {
         let resultNumber = 0;
@@ -14,6 +14,7 @@ const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClic
         <div id={"display"} style={!isActiveDisplay ? styleInactive : {}} className={styles.display}
              draggable={isEditMode && isActiveDisplay}
              onDragStart={onDragStart}
+             onDragEnd={onDragEnd ?? null}
              onDoubleClick={isEditMode ? onDoubleClick : null}>
             <div className={styles.display__value}>
                 <p className={styles.display__value__text}>

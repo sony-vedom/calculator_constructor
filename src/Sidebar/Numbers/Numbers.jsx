@@ -3,8 +3,8 @@ import {ReactComponent as VectorDnD} from "../../assets/image/vector.svg";
 
 
 const Numbers = ({
-                     numbers, isEditMode, onDragStart, isActive, onDoubleClick, onDrop, whereAddDnDIndex,
-                     styleInactive, onDragOver, onDragEnter, onDragEnd, setNumber, addDot
+                     numbers, isEditMode, onDragStart, isActive, onDoubleClick, onDrop, whereAddDnDIndex, styleInactive,
+                     onDragOver, onDragEnter, onDragEnd, setNumber, addDot, isDragStartSideBarComponent
                  }) => {
     const isActiveNumbers = isActive("numbers")
     const myReverseNumber = [...numbers].reverse().reduce((acc, el, i) => {
@@ -19,14 +19,14 @@ const Numbers = ({
 
     return (
         <>
-            { whereAddDnDIndex === "above" ? <VectorDnD/> : null}
+            {whereAddDnDIndex === "above" ? <VectorDnD/> : null}
             <div style={!isActiveNumbers ? styleInactive : (whereAddDnDIndex ? {marginTop: 0} : null)}
                  className={styles.numbers} id={"numbers"}
                  draggable={isEditMode && isActiveNumbers}
-                 onDragEnter={onDragEnter ?? null}
+                 onDragEnter={isDragStartSideBarComponent ? null : (onDragEnter ?? null)}
+                 onDragOver={isDragStartSideBarComponent ? null : (onDragOver ?? null)}
                  onDragStart={onDragStart}
-                 onDragOver={onDragOver ?? null}
-                 onDragEnd={onDragEnd ?? null}
+                 onDragEnd={onDragEnd}
                  onDoubleClick={isEditMode ? onDoubleClick : null} onDrop={onDrop}>
 
                 {
@@ -39,7 +39,7 @@ const Numbers = ({
                 }}>,
                 </button>
             </div>
-            { whereAddDnDIndex === "under" ? <VectorDnD/> : null}
+            {whereAddDnDIndex === "under" ? <VectorDnD/> : null}
         </>
     )
 }

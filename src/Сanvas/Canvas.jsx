@@ -10,15 +10,16 @@ import {addCanvasComponents, deleteCanvasComponents} from "../redux/constructorS
 import classNames from "classnames";
 import handlersDnD from "../utils/handlersDnD";
 import {ReactComponent as VectorDnD} from "../assets/image/vector.svg";
-import {makeOperation, setTypeOperation, addDot, setNumber} from "../redux/calculatorData";
+import {addDot, makeOperation, setNumber, setTypeOperation} from "../redux/calculatorData";
 
 
 const Canvas = ({
-                    addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents,
-                    isEditMode, makeOperation, setTypeOperation, setNumber, number, addDot, number2
+                    addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents, isEditMode,
+                    makeOperation, setTypeOperation, setNumber, number, addDot, number2, isDragStartSideBarComponent,
+                    isDragStartSideBarComponentDisplay
                 }) => {
     const [isDragOver, setDragover] = useState(false);
-    const [componentsList, setList] = useState([canvasComponents.filter(el => !!el)])
+    const [componentsList, setList] = useState([canvasComponents])
     const [whereAddDnD, setWhereAddDnD] = useState("")
     const [indexDragOver, setIndexDragOver] = useState(null)
 
@@ -44,6 +45,8 @@ const Canvas = ({
 
         setTypeOperation: setTypeOperation,
         makeOperation,
+        isDragOver,
+        isDragStartSideBarComponent,
     }
 
     const onDrop = () => () => {
@@ -90,7 +93,7 @@ const Canvas = ({
                             ...props,
                             key: endStartKey.key,
                             styleInactive: {cursor: "not-allowed"},
-                            number, number2,  whereAddDnDIndex,
+                            number, number2, whereAddDnDIndex,
                         }, "div")]
                 }
                 case "operators": {
@@ -114,15 +117,20 @@ const Canvas = ({
             }
         }, [])
 
-
+    console.log(isDragStartSideBarComponentDisplay)
     return (
         <div
-            style={isDragOver && !canvasComponents.length ? {background: "#F0F9FF"} : {background: "none"}}
+            style={(isDragOver && !componentsList.length) ? {background: "#F0F9FF"} : {background: "none"}}
             className={canvasComponents.length ? classNames(styles.canvas, styles.canvas__autoDropEffect) : styles.canvas}
             onDragOver={handlersDnD.handleDragOver(setDragover)}
-            onDrop={handlersDnD.handleDrop(addCanvasComponents, setDragover, setList, componentsList)}>
+            onDrop={handlersDnD.handleDrop(addCanvasComponents, setDragover)}
+        >
             {!!componentsList.length
-                ? <>{Components}</>
+                ? <>
+                    {isDragStartSideBarComponentDisplay && isDragOver ? <VectorDnD/> : null}
+                    {Components}
+                    {isDragStartSideBarComponent && !isDragStartSideBarComponentDisplay && isDragOver ? <VectorDnD/> : null}
+                </>
                 : <div className={styles.canvas__addingElem}>
                     <div>
                         <AddingElem className={styles.canvas__addingElem__pic}/>
@@ -142,6 +150,8 @@ const mapStateToProps = (state) => ({
     isEditMode: state.constructorState.isEditMode,
     number: state.calculatorData.number,
     number2: state.calculatorData.number2,
+    isDragStartSideBarComponent: state.constructorState.isDragStartSideBarComponent,
+    isDragStartSideBarComponentDisplay: state.constructorState.isDragStartSideBarComponentDisplay,
 })
 
 

@@ -1,21 +1,24 @@
-
-import {ReactComponent as VectorDnD} from "../assets/image/vector.svg";
-
-
 const handlersDnD = {
-    handleDragStartSidebarComponents: e => e.dataTransfer.setData("text", `${e.target.id}`),
+    handleDragStartSidebarComponents: (isDragStartSideBarComponents) => (e) => {
+        e.dataTransfer.setData("text", `${e.currentTarget.id}`)
+        e.currentTarget.id === "display"
+            ? isDragStartSideBarComponents(true, true)
+            : isDragStartSideBarComponents(true, false)
+    },
+    handleDragEndSidebarComponents: (isDragStartSideBarComponents) => () => {
+        isDragStartSideBarComponents(false)
+    },
     handleDragOver: (setDragover = {}) => e => {
         e.preventDefault();
         e.stopPropagation();
         if (Array.from(setDragover).length) setDragover(true)
     },
-    handleDrop: (addCanvasComponents, setDragover, setList, componentsList) => e => {
+    handleDrop: (addCanvasComponents, setDragover) => e => {
         e.preventDefault();
         e.stopPropagation();
         const component = e.dataTransfer.getData("text")
         if (component) addCanvasComponents(component)
         setDragover(false)
-        setList(componentsList.filter(el => el !== "vector"))
     },
     handleDragStartCanvasComponents: (i, dragItem) => (e) => {
         dragItem.current = i;
