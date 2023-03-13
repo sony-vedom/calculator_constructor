@@ -1,7 +1,7 @@
 import styles from "./Equals.module.scss"
 
 const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop,
-                    onDragOver, onDragEnter, onDragEnd, onDoubleClick, }) => {
+                    onDragOver, onDragEnter, onDragEnd, onDoubleClick, makeOperation}) => {
     const isActiveEquals = isActive("equals")
     return (
         <div style={!isActiveEquals ? styleInactive : {}}
@@ -11,7 +11,10 @@ const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop,
              onDragEnter={onDragEnter ?? null}
              onDragOver={onDragOver ?? null}
              onDragEnd={onDragEnd ?? null}
-             onDoubleClick={isEditMode ? onDoubleClick : null}  onDrop={onDrop}>
+             onDoubleClick={isEditMode ? onDoubleClick : null}
+             onDrop={onDrop}
+             onClick={() => {makeOperation()}}
+        >
             <button className={styles.equals__operator}>=</button>
         </div>
     )

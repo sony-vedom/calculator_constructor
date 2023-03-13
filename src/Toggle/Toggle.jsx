@@ -5,8 +5,9 @@ import {ReactComponent as ConstructorIcon} from "../assets/image/selector.svg"
 import classNames from "classnames";
 import {connect} from "react-redux";
 import {enableConstructorMode, reloadConstructorMode} from "../redux/constructorState";
+import {reloadNumber} from "../redux/calculatorData";
 
-const Toggle = ({isEditMode, enableConstructorMode, reloadConstructorMode}) => {
+const Toggle = ({isEditMode, enableConstructorMode, reloadConstructorMode, reloadNumber}) => {
     const [isConstructorMode, setConstructorMode] = useState(isEditMode);
 
     useEffect(() => {
@@ -33,6 +34,7 @@ const Toggle = ({isEditMode, enableConstructorMode, reloadConstructorMode}) => {
                     onClick={() => {
                         setConstructorMode(true)
                         reloadConstructorMode()
+                        reloadNumber()
                     }}
                     className={isConstructorMode
                         ? classNames(styles.toggle__constructor, styles.active)
@@ -49,4 +51,4 @@ const Toggle = ({isEditMode, enableConstructorMode, reloadConstructorMode}) => {
 
 export default connect(
     (state) => ({isEditMode: state.constructorState.isEditMode}),
-    {enableConstructorMode, reloadConstructorMode})(Toggle);
+    {enableConstructorMode, reloadConstructorMode, reloadNumber})(Toggle);

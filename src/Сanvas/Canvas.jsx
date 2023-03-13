@@ -10,9 +10,12 @@ import {addCanvasComponents, deleteCanvasComponents} from "../redux/constructorS
 import classNames from "classnames";
 import handlersDnD from "../utils/handlersDnD";
 import {ReactComponent as VectorDnD} from "../assets/image/vector.svg";
+import {makeOperation, setTypeOperation, addDot, setNumber} from "../redux/calculatorData";
 
-const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents, isEditMode}) => {
 
+
+const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, deleteCanvasComponents,
+                    isEditMode, makeOperation, setTypeOperation, setNumber, number, addDot, number2}) => {
     const [isDragOver, setDragover] = useState(false);
     const [componentsList, setList] = useState([canvasComponents.filter(el => !!el)])
 
@@ -35,6 +38,9 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
         onDoubleClick: (e) => {
             deleteCanvasComponents(e.currentTarget.id)
         },
+
+        setTypeOperation: setTypeOperation,
+        makeOperation,
     }
 
     const onDrop = () => (e) => {
@@ -85,15 +91,16 @@ const Canvas = ({addCanvasComponents, canvasComponents, numbers, operators, dele
                             ...props,
                             key: endStartKey.key,
                             styleInactive: {cursor: "not-allowed"},
+                            number, number2,
                         }, "div")]
                 }
                 case "operators": {
                     return [...acc, React.cloneElement(<Operators/>,
-                        {...props, ...endStartKey, dragItem: handlersDnD.dragItem}, null)]
+                        {...props, ...endStartKey}, null)]
                 }
                 case "numbers": {
                     return [...acc, React.cloneElement(<Numbers/>,
-                        {...props, ...endStartKey,}, null)]
+                        {...props, ...endStartKey, addDot, setNumber}, null)]
                 }
                 case "equals": {
                     return [...acc, React.cloneElement(<Equals/>,
@@ -134,7 +141,9 @@ const mapStateToProps = (state) => ({
     numbers: state.calculatorData.numbers,
     operators: state.calculatorData.operators,
     isEditMode: state.constructorState.isEditMode,
+    number: state.calculatorData.number,
+    number2: state.calculatorData.number2,
 })
 
 
-export default connect(mapStateToProps, {addCanvasComponents, deleteCanvasComponents})(Canvas);
+export default connect(mapStateToProps, {addCanvasComponents, deleteCanvasComponents, makeOperation, setTypeOperation, setNumber, addDot})(Canvas);

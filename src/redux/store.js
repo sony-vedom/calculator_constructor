@@ -1,6 +1,8 @@
-import {legacy_createStore as createStore, combineReducers} from "redux"
+import {legacy_createStore as createStore, combineReducers, compose, applyMiddleware} from "redux"
 import calculatorData from "./calculatorData";
 import constructorState from "./constructorState"
+import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const reducers = combineReducers({
@@ -8,6 +10,8 @@ const reducers = combineReducers({
     constructorState,
 })
 
-const store = createStore(reducers)
+const store = createStore(reducers, composeWithDevTools(
+    applyMiddleware(thunkMiddleware)
+))
 
 export default store;

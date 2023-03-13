@@ -12,10 +12,14 @@ const Sidebar = ({sidebarComponents, isEditMode, ...props}) => {
     const onDragStart = handlersDnD.handleDragStartSidebarComponents
     return (
         <nav className={styles.sidebar} style={isEditMode ? {} : {display: "none"}}>
-            <Display styleInactive = {styleInactive} isEditMode={isEditMode} isActive={isActive} onDragStart={onDragStart}/>
-            <Operators styleInactive = {styleInactive} isEditMode={isEditMode} isActive={isActive} operators={props.operators} onDragStart={onDragStart}/>
-            <Numbers styleInactive = {styleInactive} isEditMode={isEditMode} isActive={isActive} numbers={props.numbers} onDragStart={onDragStart}/>
-            <Equals styleInactive = {styleInactive} isEditMode={isEditMode} isActive={isActive} onDragStart={onDragStart}/>
+            <Display styleInactive={styleInactive} isEditMode={isEditMode} isActive={isActive}
+                     onDragStart={onDragStart}/>
+            <Operators styleInactive={styleInactive} isEditMode={isEditMode}
+                       isActive={isActive} operators={props.operators} onDragStart={onDragStart}/>
+            <Numbers styleInactive={styleInactive} isEditMode={isEditMode} isActive={isActive} numbers={props.numbers}
+                     onDragStart={onDragStart}/>
+            <Equals styleInactive={styleInactive} isEditMode={isEditMode} isActive={isActive}
+                    onDragStart={onDragStart}/>
         </nav>
     )
 }
@@ -25,5 +29,7 @@ const mapStateToProps = (state) => ({
     operators: state.calculatorData.operators,
     isEditMode: state.constructorState.isEditMode,
     sidebarComponents: state.constructorState.componentsLists.sidebar,
+
+
 })
 export default connect(mapStateToProps, {})(Sidebar);
