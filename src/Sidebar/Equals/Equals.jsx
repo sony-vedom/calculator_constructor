@@ -16,7 +16,7 @@ const Equals = ({isEditMode, onDragStart, isActive, styleInactive, onDrop, where
              onDragEnd={onDragEnd}
              onDoubleClick={isEditMode ? onDoubleClick : null}
              onDrop={onDrop}
-             onClick={() => {makeOperation()}}
+             onClick={makeOperation ? () => {makeOperation()} : null}
         >
             <button className={styles.equals__operator}>=</button>
         </div>

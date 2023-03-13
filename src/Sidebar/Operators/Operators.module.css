@@ -1,30 +1,59 @@
 .operators {
-  width: 240px;
-  height: 56px;
-  padding: 4px;
-  box-sizing: border-box;
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+    width: 240px;
+    height: 56px;
+    padding: 4px;
+    box-sizing: border-box;
+
+    margin-top: 8px;
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
 }
 
-.operators__operator {
-  width: 52px;
-  height: 48px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #FFFFFF;
-  border: 1px solid #E2E3E5;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 15px;
-  text-align: center;
-  color: #000000;
-  cursor: inherit;
+.frame, .operators__operator, .operators__operator_calcMode {
+    width: 52px;
+    height: 48px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #FFFFFF;
+    border-radius: 6px;
+
+
+    cursor: inherit;
+
+    font-style: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    color: #000000;
 }
 
-/*# sourceMappingURL=Operators.module.css.map */
+.operators__operator, .operators__operator_calcMode {
+    border: 1px solid #E2E3E5;
+    width: 100%;
+}
+
+.operators__operator_calcMode {
+    cursor: pointer;
+}
+
+.operators__operator_calcMode:hover {
+    cursor: pointer;
+    border: 2px solid #5D5FEF;
+}
+
+.operators__operator_calcMode:active {
+    border: none;
+    width: 55px;
+    height: 51px;
+    position: absolute;
+
+    color: #FFFFFF;
+    background: #5D5FEF;
+}

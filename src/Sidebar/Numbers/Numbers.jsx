@@ -30,14 +30,16 @@ const Numbers = ({
                  onDoubleClick={isEditMode ? onDoubleClick : null} onDrop={onDrop}>
 
                 {
-                    myReverseNumber.map((el) => <button type={"button"} onClick={isEditMode ? null : () => {
-                        setNumber(el)
-                    }} key={`number+${el}`}>{el}</button>)
+                    myReverseNumber.map((el) => <div className={styles.frame} key={`frameNumber+${el}`}>
+                        <button key={`number+${el}`} type={"button"} onClick={isEditMode ? null : () => setNumber(el)}
+                                className={isEditMode ? styles.numbers__buttons : styles.number__buttons_calcMode}>{el}</button>
+                    </div>)
                 }
-                <button onClick={isEditMode ? null : () => {
-                    addDot()
-                }}>,
-                </button>
+                <div className={styles.frame}>
+                    <button className={isEditMode ? styles.numbers__buttons : styles.number__buttons_calcMode}
+                            onClick={isEditMode ? null : () => addDot()}>,
+                    </button>
+                </div>
             </div>
             {whereAddDnDIndex === "under" ? <VectorDnD/> : null}
         </>

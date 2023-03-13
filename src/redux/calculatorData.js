@@ -81,7 +81,6 @@ const calculatorData = (state = initialState, action) => {
         }
 
         case SET_NUMBER: {
-            console.log(state.isResetValue)
             if (state.isResetValue) {
                 return {
                     ...state,
@@ -93,13 +92,11 @@ const calculatorData = (state = initialState, action) => {
             if (state.typeOperation) {
 
                 if (String(state.number2 + action.number).length > 17) {
-                    debugger
                     return {
                         ...state,
                         number2: state.number2,
                     }
                 } else {
-                    debugger
                     return (String(state.number2) === "0" || state.number2 === "Не определено") ?
                         {...state, number2: action.number}
                         : {...state, number2: state.number2 + action.number}
@@ -139,6 +136,7 @@ const calculatorData = (state = initialState, action) => {
             return {
                 ...state,
                 number: 0,
+                number2: "",
             }
         }
         default: {

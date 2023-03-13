@@ -117,7 +117,6 @@ const Canvas = ({
             }
         }, [])
 
-    console.log(isDragStartSideBarComponentDisplay)
     return (
         <div
             style={(isDragOver && !componentsList.length) ? {background: "#F0F9FF"} : {background: "none"}}
