@@ -53,6 +53,8 @@ const Canvas = ({
 
     const onDragEnter = (i) => (e) => {
         dragOverItem.current = i;
+        e.preventDefault();
+        e.stopPropagation();
         setIndexDragOver(dragOverItem.current)
         if (dragItem.current !== dragOverItem.current) {
             if (dragItem.current > dragOverItem.current) {
@@ -71,7 +73,7 @@ const Canvas = ({
         .sort(a => a === "display" ? -1 : 1)
         .reduce((acc, el, i) => {
             let whereAddDnDIndex = ""
-            if (indexDragOver === i) {
+            if (indexDragOver === i && indexDragOver !== dragItem.current) {
                 whereAddDnDIndex = whereAddDnD
             }
 

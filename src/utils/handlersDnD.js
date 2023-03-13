@@ -12,7 +12,8 @@ const handlersDnD = {
     handleDrop: (addCanvasComponents, setDragover, setList, componentsList) => e => {
         e.preventDefault();
         e.stopPropagation();
-        addCanvasComponents(e.dataTransfer.getData("text"))
+        const component = e.dataTransfer.getData("text")
+        if (component) addCanvasComponents(component)
         setDragover(false)
         setList(componentsList.filter(el => el !== "vector"))
     },
