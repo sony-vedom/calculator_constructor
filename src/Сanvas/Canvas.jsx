@@ -25,7 +25,9 @@ const Canvas = ({
         isEditMode || componentsList.length
             ? <div
                 style={(isDragOver && !componentsList.length) ? {background: "#F0F9FF"} : {background: "none"}}
-                className={canvasComponents.length ? classNames(styles.canvas, styles.canvas__autoDropEffect) : styles.canvas}
+                className={canvasComponents.length ?
+                           classNames(styles.canvas, componentsList.length === 4 ? styles.canvas__autoDropEffect__all : styles.canvas__autoDropEffect)
+                           : styles.canvas}
                 onDragOver={handlersDnD.handleDragOver(setDragover)}
                 onDrop={handlersDnD.handleDrop(addCanvasComponents, setDragover)}
             >

@@ -11,11 +11,15 @@
     border-radius: 6px;
 }
 
-.canvas__autoDropEffect {
+.canvas__autoDropEffect, .canvas__autoDropEffect__all  {
     display: grid;
 
     border: none;
     align-content: start;
+}
+
+.canvas__autoDropEffect__all {
+    align-content: initial;
 }
 
 .canvas__addingElem {
