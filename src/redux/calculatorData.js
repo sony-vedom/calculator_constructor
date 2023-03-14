@@ -173,6 +173,9 @@ export const makeOperation = () => (dispatch, getState) => {
             dispatch(multiplicationAction())
             break
         }
+        default: {
+            break
+        }
     }
 }
 
