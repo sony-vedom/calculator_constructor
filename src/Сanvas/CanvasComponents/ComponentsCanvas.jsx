@@ -11,7 +11,7 @@ const ComponentsCanvas = ({
                               operators, deleteCanvasComponents, setList,
                               addDot, setNumber, setTypeOperation,
                               makeOperation, isDragOver, isDragStartSideBarComponent,
-                              number, number2,
+                              number, number2, result,
                           }) => {
     const [whereAddDnD, setWhereAddDnD] = useState("")
     const [indexDragOver, setIndexDragOver] = useState(null)
@@ -56,7 +56,7 @@ const ComponentsCanvas = ({
                             ...props,
                             key: el,
                             styleInactive: {cursor: "not-allowed"},
-                            number, number2, whereAddDnDIndex,
+                            number, number2, result, whereAddDnDIndex,
                         }, "div")]
                 }
                 case "operators": {

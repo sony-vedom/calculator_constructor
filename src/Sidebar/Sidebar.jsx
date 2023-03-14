@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
     operators: state.calculatorData.operators,
     isEditMode: state.constructorState.isEditMode,
     sidebarComponents: state.constructorState.componentsLists.sidebar,
-    isDragStartSideBarComponent: state.constructorState.isDragStartSideBarComponent
+    isDragStartSideBarComponent: state.constructorState.isDragStartSideBarComponent,
 
 })
 export default connect(mapStateToProps, {isDragStartSideBarComponents})(Sidebar);

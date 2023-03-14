@@ -1,13 +1,13 @@
 import styles from "./Display.module.css"
 import React from "react";
 
-const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClick, number, number2, onDragEnd}) => {
+const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClick, number, number2, result, onDragEnd}) => {
     const isActiveDisplay = isActive("display")
     const outputValue = () => {
-        let result = 0;
-        result = number2 !== "" ? number2 : number;
-        result = result ? String(result).replace(".", ",") : "0"
-        return result;
+        let outputValue = 0;
+        outputValue = result ?? number2 ?? number;
+        outputValue = outputValue ? String(outputValue).replace(".", ",") : "0"
+        return outputValue;
     }
 
     const fontSize = () => {

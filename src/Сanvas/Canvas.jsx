@@ -11,14 +11,11 @@ import ComponentsCanvas from "./CanvasComponents/ComponentsCanvas";
 
 
 const Canvas = ({
-                    addCanvasComponents, canvasComponents,
-                    isDragStartSideBarComponent,
-                    isDragStartSideBarComponentDisplay,
-                    isEditMode, ...props
+                    addCanvasComponents, canvasComponents, isDragStartSideBarComponent,
+                    isDragStartSideBarComponentDisplay, isEditMode, ...props
                 }) => {
     const [isDragOver, setDragover] = useState(false);
     const [componentsList, setList] = useState([canvasComponents])
-
 
     useEffect(() => {
         setList(canvasComponents)
@@ -61,6 +58,7 @@ const mapStateToProps = (state) => ({
     isEditMode: state.constructorState.isEditMode,
     number: state.calculatorData.number,
     number2: state.calculatorData.number2,
+    result: state.calculatorData.result,
     isDragStartSideBarComponent: state.constructorState.isDragStartSideBarComponent,
     isDragStartSideBarComponentDisplay: state.constructorState.isDragStartSideBarComponentDisplay,
 })

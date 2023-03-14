@@ -1,5 +1,3 @@
-/* global BigInt */
-
 const PLUS = "PLUS" // +
 const MINUS = "MINUS" // -
 const DIVISION = "DIVISION" // /
@@ -8,28 +6,26 @@ const SET_NUMBER = "SET_NUMBER"
 const SET_TYPE_OPERATION = "SET_TYPE_OPERATION"
 const RELOAD_NUMBER = "RELOAD_NUMBER"
 const ADD_DOT = "ADD_DOT"
-const RESET_VALUE = "RESET_VALUE"
-
 
 const initialState = {
     numbers: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
     operators: ["/", "х", "-", "+"],
     number: 0,
-    number2: "",
+    number2: null,
+    result: null,
     typeOperation: "",
-    isResetValue: false,
 }
 
 const calculatorData = (state = initialState, action) => {
     const roundingAndIsFinite = (number) => {
-        if (!isFinite(number)) number = "Не определено"
+        if (!isFinite(number)) return "Не определено"
         const stringNumber = String(number)
         if (stringNumber.length > 14) {
             try {
                 const minusLength = stringNumber.includes("-") ? 2 : 1
                 number = number.toFixed(14 - minusLength - (stringNumber.slice(0, stringNumber.indexOf(".")).length))
             } catch {
-                number = String(BigInt(Number(stringNumber)))
+                return String(Math.round(number))
             }
         }
         return number
@@ -37,43 +33,44 @@ const calculatorData = (state = initialState, action) => {
 
 
     switch (action.type) {
+
         case PLUS: {
-            let number = Number(state.number) + Number(state.number2)
-            number = roundingAndIsFinite(number)
             return {
                 ...state,
-                number: number,
-                number2: "",
+                result: roundingAndIsFinite(Number(state.number) + Number(state.number2)),
+                number: null,
+                number2: 0,
+                typeOperation: "",
             }
         }
         case MINUS: {
-            let number = Number(state.number) - Number(state.number2)
-            number = roundingAndIsFinite(number)
             return {
                 ...state,
-                number: number,
-                number2: "",
+                number: null,
+                number2: null,
+                result: roundingAndIsFinite(Number(state.number) - Number(state.number2)),
+                typeOperation: "",
+
             }
         }
 
         case DIVISION: {
-            let number = Number(state.number) / Number(state.number2)
-            number = roundingAndIsFinite(number)
             return {
                 ...state,
-                number: number,
-                number2: "",
+                number: null,
+                number2: null,
+                result: roundingAndIsFinite(Number(state.number) / Number(state.number2)),
+                typeOperation: "",
             }
         }
 
         case MULTIPLICATION: {
-            let number = Number(state.number) * Number(state.number2)
-            number = roundingAndIsFinite(number)
-
             return {
                 ...state,
-                number: number,
-                number2: "",
+                number: null,
+                number2: null,
+                result: roundingAndIsFinite(Number(state.number) * Number(state.number2)),
+                typeOperation: "",
             }
         }
 
@@ -85,39 +82,41 @@ const calculatorData = (state = initialState, action) => {
         }
 
         case SET_NUMBER: {
-            if (state.isResetValue) {
-                return {
-                    ...state,
-                    isResetValue: false,
-                    number: action.number,
-                }
-            }
 
-            if (state.typeOperation) {
-
-                if (String(state.number2 + action.number).length > 14) {
+            if (!state.typeOperation) {
+                const resultNumber2 = {number2: null, result: null}
+                if (String(state.number + action.number).length > 14) {
                     return {
                         ...state,
-                        number2: state.number2,
+                        number: state.number,
+                        ...resultNumber2
+
                     }
                 } else {
-                    return (String(state.number2) === "0" || state.number2 === "Не определено") ?
-                        {...state, number2: action.number}
-                        : {...state, number2: state.number2 + action.number}
+                    return (state.number === null || String(state.number) === "0" || state.number === "Не определено") ?
+                        {...state, number: action.number, ...resultNumber2}
+                        : {...state, number: state.number + action.number, ...resultNumber2}
                 }
             }
 
-            if (String(state.number + action.number).length > 14) {
-                return {
-                    ...state,
-                    number: state.number,
-                }
+            const resultNumber = {result: null, number: state.result}
+
+            if (String(state.number2 + action.number).length > 14) {
+                return state.result
+                    ? {...state, number2: state.number2, ...resultNumber}
+                    : {...state, number2: state.number2}
             } else {
-                return (String(state.number) === "0" || state.number === "Не определено") ?
-                    {...state, number: action.number}
-                    : {...state, number: state.number + action.number}
+                if (state.number2 === null || String(state.number2) === "0" || state.number2 === "Не определено") {
+                    return state.result
+                        ? {...state, number2: action.number, ...resultNumber}
+                        : {...state, number2: action.number}
+                }
+                return state.result
+                    ? {...state, number2: state.number2 + action.number, ...resultNumber}
+                    : {...state, number2: state.number2 + action.number}
             }
         }
+
 
         case ADD_DOT: {
 
@@ -128,18 +127,12 @@ const calculatorData = (state = initialState, action) => {
 
         }
 
-        case RESET_VALUE: {
-            return {
-                ...state,
-                isResetValue: action.booleanValue,
-            }
-        }
-
         case RELOAD_NUMBER: {
             return {
                 ...state,
                 number: 0,
-                number2: "",
+                number2: null,
+                result: null,
                 typeOperation: "",
             }
         }
@@ -162,35 +155,25 @@ export const reloadNumber = () => ({
     type: RELOAD_NUMBER,
 })
 
-const resetValue = (booleanValue) => ({
-    type: RESET_VALUE,
-    booleanValue
-})
-
 export const makeOperation = () => (dispatch, getState) => {
     switch (getState().calculatorData.typeOperation) {
-        case PLUS: {
+        case (PLUS): {
             dispatch(plusAction())
-            break;
+            break
         }
-        case MINUS: {
+        case (MINUS): {
             dispatch(minusAction())
-            break;
+            break
         }
-        case DIVISION: {
+        case (DIVISION): {
             dispatch(divisionAction())
-            break;
+            break
         }
-        case MULTIPLICATION: {
+        case (MULTIPLICATION): {
             dispatch(multiplicationAction())
-            break;
-        }
-        default: {
             break
         }
     }
-    dispatch(resetValue(true))
-    getState().calculatorData.typeOperation = ""
 }
 
 export const setTypeOperation = (typeOperation) => {
@@ -215,6 +198,5 @@ const divisionAction = () => ({
 const multiplicationAction = () => ({
     type: MULTIPLICATION,
 })
-
 
 export default calculatorData;

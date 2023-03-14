@@ -31,7 +31,11 @@ const Numbers = ({
 
                 {
                     myReverseNumber.map((el) => <div className={styles.frame} key={`frameNumber+${el}`}>
-                        <button key={`number+${el}`} type={"button"} onClick={isEditMode ? null : () => setNumber(el)}
+                        <button key={`number+${el}`} type={"button"}
+                                onClick={ () => {
+                                    !isEditMode && setNumber(el)
+
+                                }}
                                 className={isEditMode ? styles.numbers__buttons : styles.number__buttons_calcMode}>{el}</button>
                     </div>)
                 }
