@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/calculator_constructor/static/css/main.95f0f01e.css",
-    "main.js": "/calculator_constructor/static/js/main.0f324989.js",
+    "main.css": "/calculator_constructor/static/css/main.6a20fa8c.css",
+    "main.js": "/calculator_constructor/static/js/main.2413d3d1.js",
     "static/media/addingElem.svg": "/calculator_constructor/static/media/addingElem.ff2a0d409c14819260b08f919e659b64.svg",
     "static/media/eye.svg": "/calculator_constructor/static/media/eye.9ebd036c7205732a0b4086d107dd9042.svg",
     "index.html": "/calculator_constructor/index.html",
     "static/media/selector.svg": "/calculator_constructor/static/media/selector.6f94a72741625f4211eaa1a3f280f003.svg",
     "static/media/vector.svg": "/calculator_constructor/static/media/vector.2c73bd56540333bdad065d72d371696f.svg",
-    "main.95f0f01e.css.map": "/calculator_constructor/static/css/main.95f0f01e.css.map",
-    "main.0f324989.js.map": "/calculator_constructor/static/js/main.0f324989.js.map"
+    "main.6a20fa8c.css.map": "/calculator_constructor/static/css/main.6a20fa8c.css.map",
+    "main.2413d3d1.js.map": "/calculator_constructor/static/js/main.2413d3d1.js.map"
   },
   "entrypoints": [
-    "static/css/main.95f0f01e.css",
-    "static/js/main.0f324989.js"
+    "static/css/main.6a20fa8c.css",
+    "static/js/main.2413d3d1.js"
   ]
 }
