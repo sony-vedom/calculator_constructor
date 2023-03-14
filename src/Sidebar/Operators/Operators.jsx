@@ -10,7 +10,7 @@ const Operators = ({
         <>
             {whereAddDnDIndex === "above" ? <VectorDnD/> : null}
             <div style={!isActiveOperators ? styleInactive : (whereAddDnDIndex ? {marginTop: 0} : null)}
-                 className={styles.operators}
+                 className={isEditMode ? styles.operators_move : styles.operators}
                  id={"operators"} draggable={isEditMode && isActiveOperators}
                  onDragEnter={isDragStartSideBarComponent ? null : (onDragEnter ?? null)}
                  onDragOver={isDragStartSideBarComponent ? null : (onDragOver ?? null)}

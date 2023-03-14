@@ -1,4 +1,4 @@
-.operators {
+.operators, .operators_move {
     width: 240px;
     height: 56px;
     padding: 4px;
@@ -9,6 +9,14 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+}
+
+.operators {
+    cursor: default;
+}
+
+.operators_move {
+    cursor: move;
 }
 
 .frame, .operators__operator, .operators__operator_calcMode {

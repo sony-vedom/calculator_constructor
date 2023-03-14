@@ -6,6 +6,10 @@
   height: 72px;
 }
 
+.equals {
+  cursor: move;
+}
+
 .equals_calcMode {
   cursor: pointer;
 }

@@ -21,7 +21,7 @@ const Numbers = ({
         <>
             {whereAddDnDIndex === "above" ? <VectorDnD/> : null}
             <div style={!isActiveNumbers ? styleInactive : (whereAddDnDIndex ? {marginTop: 0} : null)}
-                 className={styles.numbers} id={"numbers"}
+                 className={ isEditMode ? styles.numbers_move : styles.numbers} id={"numbers"}
                  draggable={isEditMode && isActiveNumbers}
                  onDragEnter={isDragStartSideBarComponent ? null : (onDragEnter ?? null)}
                  onDragOver={isDragStartSideBarComponent ? null : (onDragOver ?? null)}

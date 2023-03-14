@@ -120,8 +120,12 @@ const calculatorData = (state = initialState, action) => {
 
         case ADD_DOT: {
 
-            const dot = String(state.number).includes(".") ? state.number : String(state.number) + "."
-            const dot2 = String(state.number2).includes(".") ? state.number2 : String(state.number2) + "."
+            const dot = state.number !== null
+                ? ((String(state.number).includes(".") ? state.number : String(state.number) + "."))
+                : state.number
+            const dot2 = state.number2 !== null
+                ? (String(state.number2).includes(".") ? state.number2 : String(state.number2) + ".")
+                : state.number2
 
             return !state.typeOperation ? {...state, number: dot} : {...state, number2: dot2}
 

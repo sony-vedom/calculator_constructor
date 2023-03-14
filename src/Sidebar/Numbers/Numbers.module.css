@@ -1,4 +1,4 @@
-.numbers {
+.numbers, .numbers_move {
     height: 224px;
     width: 240px;
 
@@ -16,6 +16,13 @@
     position: relative;
 }
 
+.numbers {
+    cursor: default;
+}
+
+.numbers_move {
+    cursor: move;
+}
 
 .frame, .numbers__buttons, .number__buttons_calcMode {
     height: 48px;
