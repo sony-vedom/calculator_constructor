@@ -61,7 +61,7 @@ const ComponentsCanvas = ({
                 }
                 case "operators": {
                     return [...acc, React.cloneElement(<Operators/>,
-                        {...props, ...propsForDndComponents, whereAddDnDIndex}, null)]
+                        {...props, number, number2, ...propsForDndComponents, whereAddDnDIndex}, null)]
                 }
                 case "numbers": {
                     return [...acc, React.cloneElement(<Numbers/>,

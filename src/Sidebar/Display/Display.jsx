@@ -4,8 +4,7 @@ import React from "react";
 const Display = ({isEditMode, onDragStart, isActive, styleInactive, onDoubleClick, number, number2, result, onDragEnd}) => {
     const isActiveDisplay = isActive("display")
     const outputValue = () => {
-        let outputValue = 0;
-        outputValue = result ?? number2 ?? number;
+        let outputValue = result ?? number2 ?? number ?? "0";
         outputValue = outputValue ? String(outputValue).replace(".", ",") : "0"
         return outputValue;
     }

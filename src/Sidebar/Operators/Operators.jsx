@@ -2,8 +2,8 @@ import styles from "./Operators.module.css"
 import {ReactComponent as VectorDnD} from "../../assets/image/vector.svg";
 
 const Operators = ({
-                       operators, isEditMode, onDragStart, isActive, onDoubleClick, whereAddDnDIndex, onDragEnter,
-                       styleInactive, onDragEnd, onDragOver, onDrop, setTypeOperation, isDragStartSideBarComponent
+                       operators, isEditMode, onDragStart, isActive, onDoubleClick, whereAddDnDIndex, onDragEnter, makeOperation,
+                       styleInactive, onDragEnd, onDragOver, onDrop, setTypeOperation, isDragStartSideBarComponent, number, number2,
                    }) => {
     const isActiveOperators = isActive("operators")
     return (
@@ -43,6 +43,7 @@ const Operators = ({
                         return <div className={styles.frame} key={`frameOperator +${el}`}>
                             <button type={"button"}
                                     onClick={isEditMode ? null : () => {
+                                        number !== null && number2 !== null && makeOperation()
                                         setTypeOperation(typeOperation)
                                     }}
                                     className={isEditMode ? styles.operators__operator : styles.operators__operator_calcMode}
